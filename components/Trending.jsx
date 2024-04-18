@@ -1,15 +1,13 @@
+import { ResizeMode, Video } from "expo-av";
 import { useState } from "react";
 import {
-  View,
-  Text,
   FlatList,
-  TouchableOpacity,
-  ImageBackground,
   Image,
+  ImageBackground,
+  TouchableOpacity,
 } from "react-native";
 import * as Animatable from "react-native-animatable";
 import { icons } from "../constants";
-import { ResizeMode, Video } from "expo-av";
 
 const zommIn = {
   0: {
@@ -31,6 +29,8 @@ const zommOut = {
 const TrendingItem = ({ activeItem, item }) => {
   const [play, setPlay] = useState(false);
 
+  item.video;
+
   return (
     <Animatable.View
       className="mx-5"
@@ -40,7 +40,7 @@ const TrendingItem = ({ activeItem, item }) => {
       {play ? (
         <Video
           source={{ uri: item.video }}
-          className="w-52 h-72 rounded-[35px] mt-3 bg-white/10"
+          className="w-52 h-72 rounded-[33px] mt-3 bg-white/10"
           resizeMode={ResizeMode.CONTAIN}
           useNativeControls
           shouldPlay

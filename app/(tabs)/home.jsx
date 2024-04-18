@@ -1,23 +1,24 @@
+import React, { useState } from "react";
 import {
-  View,
-  Text,
-  SafeAreaView,
   FlatList,
   Image,
   RefreshControl,
-  Alert,
+  SafeAreaView,
+  Text,
+  View,
 } from "react-native";
-import React, { useEffect, useState } from "react";
 
-import { images } from "../../constants";
-import SearchInput from "../../components/SearchInput";
 import EmptyState from "../../components/EmptyState";
+import SearchInput from "../../components/SearchInput";
+import Trending from "../../components/Trending";
+import VideoCard from "../../components/VideoCard";
+import { images } from "../../constants";
 import { getAllPosts, getLatestPosts } from "../../lib/appwrite";
 import useAppwrite from "../../lib/useAppwrite";
-import VideoCard from "../../components/VideoCard";
-import Trending from "../../components/Trending";
+import { useGlobalContext } from "../../context/GlobalProvider";
 
 const Home = () => {
+  const { user, setUser, setIsLogged } = useGlobalContext();
   const { data: posts, refetch } = useAppwrite(getAllPosts);
   const { data: latestPosts } = useAppwrite(getLatestPosts);
   const [refreshing, setRefreshing] = useState(false);
@@ -39,10 +40,10 @@ const Home = () => {
             <View className="flex-row items-start justify-between mb-6">
               <View>
                 <Text className="text-sm text-gray-100 font-pmedium">
-                  Welcome back
+                  Welcome back,
                 </Text>
                 <Text className="text-2xl text-white font-psemibold">
-                  GREATANDREW
+                  {user?.username ?? "User"}
                 </Text>
               </View>
 
